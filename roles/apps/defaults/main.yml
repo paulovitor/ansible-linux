@@ -1,0 +1,6 @@
+---
+# Version of franz
+franz_version: "5.0.0-beta.22"
+
+# Version of openvpn
+openvpn_version: "2.6.1-Ubuntu18"

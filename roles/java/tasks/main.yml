@@ -1,0 +1,33 @@
+---
+- name: Download SDK
+  shell: >
+    curl -s "https://get.sdkman.io" | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.sdkman/bin/sdkman-init.sh"
+
+- name: Add sdkman in .bashrc
+  lineinfile: dest={{ ansible_env.HOME }}/.bashrc regexp="\/.sdkman/bin\/sdkman\-init\.sh" line='[[ -s "{{ ansible_env.HOME }}/.sdkman/bin/sdkman-init.sh" && ! $(which sdkman-init.sh) ]] && source "{{ ansible_env.HOME }}/.sdkman/bin/sdkman-init.sh"'
+
+- name: Check SDK Version
+  shell: bash -ic "sdk version"
+  register: version_response
+
+- name: Install maven
+  command: bash -ic "sdk install maven"
+
+- name: Add Oracle java repository
+  apt_repository: repo='ppa:webupd8team/java'
+
+- name: Update apt
+  apt: update_cache=yes
+  become: yes
+
+- name: Accept license terms
+  debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+
+- name: Install Java
+  apt: name={{item}} state=latest
+  with_items:
+    - oracle-java8-installer
+    - ca-certificates
+    - oracle-java8-set-default

@@ -1,0 +1,52 @@
+---
+- name: Upgrade packages
+  apt: upgrade=safe
+  become: yes
+  
+- name: Install applications via snap
+  command:
+  args:
+    argv:
+      - snap
+      - install
+      - docker
+      - gitkraken
+      - intellij-idea-community
+      - ngrok
+      - osddm
+      - postman
+      - spotify
+      - vlc
+      - vscode
+  become: yes
+
+- name: Install dbeaver via snap
+  command: snap install dbeaver-ce --channel=latest/edge
+  become: yes
+
+- name: Install google chrome
+  apt:
+    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  become: yes
+
+- name: Install franz
+  apt:
+    deb: https://github.com/meetfranz/franz/releases/download/v{{ franz_version }}/franz_{{ franz_version }}_amd64.deb
+  become: yes
+
+- name: Install openvpn
+  apt:
+    deb: http://swupdate.openvpn.org/as/openvpn-as-{{ openvpn_version }}.amd_64.deb
+  become: yes
+
+- name: Installing python pip
+  package:
+    name: python-pip
+    state: present
+  become: yes
+
+- name: Install docker-compose
+  pip:
+    name: docker-compose
+    state: present
+  become: yes    

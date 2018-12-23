@@ -1,0 +1,6 @@
+---
+# Version of NVM to install
+nvm_version: "0.33.11"
+
+# Version numbers from Nodesource: https://github.com/nodesource/distributions
+nodejs_version: "--lts"
