@@ -13,6 +13,7 @@
   - git
   - git-flow
   - vim
+  - xclip
   become: yes
 
 - name: Setup default git configuraiton
@@ -22,5 +23,5 @@
     value: "{{ item.value }}"
   with_items:
     - {name: "user.name",  value: "Paulo" }
-    - {name: "user.email", value: "paulovitor88@gmail.com" }
+    - {name: "user.email", value: "paulo.vitor@aisdigital.com.br" }
     - {name: "ui.color",   value: "true" }

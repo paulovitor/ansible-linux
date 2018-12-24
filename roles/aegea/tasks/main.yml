@@ -1,0 +1,30 @@
+---
+- name: Create aegea folder
+  file:
+    path: "{{ ansible_env.HOME }}/workspace/aegea"
+    state: directory
+
+- name: Download aegea android
+  git:
+    repo: git@bitbucket.org:altran-ais/aegea-android.git
+    dest: "{{ ansible_env.HOME }}/workspace/aegea/aegea-android"
+
+- name: Download aegea api
+  git:
+    repo: git@bitbucket.org:altran-ais/aegea-api.git
+    dest: "{{ ansible_env.HOME }}/workspace/aegea/aegea-api"
+
+- name: Download aegea backoffice
+  git:
+    repo: git@bitbucket.org:altran-ais/aegea-backoffice.git
+    dest: "{{ ansible_env.HOME }}/workspace/aegea/aegea-backoffice"
+
+- name: Download aegea geoserver
+  git:
+    repo: git@bitbucket.org:altran-ais/aegea-geoserver.git
+    dest: "{{ ansible_env.HOME }}/workspace/aegea/aegea-geoserver"
+
+- name: Download aegea web
+  git:
+    repo: git@bitbucket.org:altran-ais/aegea-web.git
+    dest: "{{ ansible_env.HOME }}/workspace/aegea/aegea-web"
