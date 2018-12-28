@@ -12,6 +12,7 @@
   - curl
   - git
   - git-flow
+  - unrar
   - vim
   - xclip
   become: yes
