@@ -12,6 +12,8 @@
   - curl
   - git
   - git-flow
+  - exfat-fuse
+  - exfat-utils
   - p7zip-full
   - unrar
   - vim
