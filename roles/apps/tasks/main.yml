@@ -50,4 +50,14 @@
   pip:
     name: docker-compose
     state: present
-  become: yes    
+  become: yes
+
+- name: Download anki
+  unarchive:
+    src: "https://apps.ankiweb.net/downloads/current/anki-{{ anki_version }}-linux-amd64.tar.bz2"
+    dest: "{{ lookup('env','HOME') }}/Downloads/"
+    remote_src: yes
+
+- name: Install anki
+  command: bash -lc "cd {{ lookup('env','HOME') }}/Downloads/anki-{{ anki_version }}-linux-amd64 && make install"
+  become: yes
