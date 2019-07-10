@@ -4,20 +4,21 @@
   become: yes
   
 - name: Install applications via snap
-  command:
-  args:
-    argv:
-      - snap
-      - install
+  snap:
+    name:
       - docker
       - gitkraken
-      - intellij-idea-community
       - ngrok
       - postman
       - spotify
       - vlc
+
+- name: Install intellij and vscode via snap
+  snap:
+    name:
+      - intellij-idea-community
       - vscode
-  become: yes
+    classic: yes
 
 - name: Install dbeaver
   apt:
